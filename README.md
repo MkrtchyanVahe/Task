@@ -144,7 +144,7 @@ Here is a brief explanation of the resources used in the code:
 
 
 --------------------------------------------------------------------------------------------------------------------
-
+4.1. Set up an Amazon EKS cluster and connect it to the VPC.
 --------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------- 
   This is a Terraform configuration file for creating an Amazon EKS (Elastic Kubernetes Service) node group with an 
@@ -171,12 +171,21 @@ Here is a brief explanation of the resources used in the code:
        argument ensures that the IAM policies are attached to the role before the node group is created.
 
 ---------------------------------------------------------------------------------------------------------------
-
+4.3. Deploy a sample application (e.g., node) to the cluster using a Kubernetes Deployment and Service.
 ---------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------
+  This is a YAML configuration file for Kubernetes that defines two services and a deployment for an Nginx container.
 
+  The first section defines a deployment named "nginx" with one replica. It also specifies that the container will 
+  use the Nginx 1.14.2 image and expose port 80.
 
-https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+  The second section defines a service named "internal-nginx-service" that targets the Nginx deployment and exposes 
+  it internally with an AWS Network Load Balancer. It also enables cross-zone load balancing and allows all IP 
+  addresses to access it.
+
+  The third section defines a service named "external-nginx-service" that targets the same Nginx deployment and exposes  
+  it externally with an AWS Network Load Balancer. It also enables cross-zone load balancing, but only allows traffic  
+  from within the VPC.
 
 
 
